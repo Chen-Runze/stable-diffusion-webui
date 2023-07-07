@@ -80,6 +80,7 @@ def git_tag():
 def run(command, desc=None, errdesc=None, custom_env=None, live: bool = default_command_live) -> str:
     if desc is not None:
         print(desc)
+    print('-------- Command Is: ', command)
 
     run_kwargs = {
         "args": command,
@@ -337,7 +338,9 @@ def configure_for_tests():
 
 def start():
     print(f"Launching {'API server' if '--nowebui' in sys.argv else 'Web UI'} with arguments: {' '.join(sys.argv[1:])}")
+    print("'Before 'import webui'")
     import webui
+    print("'After 'import webui'")
     if '--nowebui' in sys.argv:
         webui.api_only()
     else:
