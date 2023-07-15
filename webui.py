@@ -390,7 +390,7 @@ def webui():
         app, local_url, share_url = shared.demo.launch(
             share=cmd_opts.share,
             server_name=server_name,
-            server_port=cmd_opts.port,
+            server_port=cmd_opts.port if cmd_opts.port else int(os.getenv('SD_WEBUI_PORT', default='8888')),
             ssl_keyfile=cmd_opts.tls_keyfile,
             ssl_certfile=cmd_opts.tls_certfile,
             ssl_verify=cmd_opts.disable_tls_verify,
